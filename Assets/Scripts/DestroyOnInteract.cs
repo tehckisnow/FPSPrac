@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyOnInteract : MonoBehaviour, IInteractable
 {
+    public string interactionLabel = "Destroy";
     public Material selectedMaterial;
     public Popup popup;
 
@@ -24,7 +25,7 @@ public class DestroyOnInteract : MonoBehaviour, IInteractable
     {
         Debug.Log($"Ready to destroy {gameObject.name}");
         thisRenderer.material = selectedMaterial;
-        popup.Open("Destroy");
+        popup.Open(interactionLabel);
     }
 
     public void OnInteract()
