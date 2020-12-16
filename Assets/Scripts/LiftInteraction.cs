@@ -15,16 +15,16 @@ public class LiftInteraction : MonoBehaviour, IInteractable
     public float MaxRange { get { return maxRange; }}
     private const float maxRange = 5f;
     private bool taken = false;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
 
     private void Pickup()
     {
         popup.Close();
         popup.Open("Drop");
         //gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        if(rigidbody != null)
+        if(rb != null)
         {
-            rigidbody.isKinematic = true;
+            rb.isKinematic = true;
         }
         gameObject.transform.SetParent(player.transform);
         taken = true;
@@ -34,9 +34,9 @@ public class LiftInteraction : MonoBehaviour, IInteractable
     {
         gameObject.transform.parent = null;
         //gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        if(rigidbody != null)
+        if(rb != null)
         {
-            rigidbody.isKinematic = false;
+            rb.isKinematic = false;
         }
         taken = false;
     }
@@ -45,7 +45,7 @@ public class LiftInteraction : MonoBehaviour, IInteractable
     {
         thisRenderer = GetComponent<Renderer>();
         originalMaterial = thisRenderer.material;
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     public void OnStartHover()
